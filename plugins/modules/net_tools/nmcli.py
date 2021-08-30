@@ -1350,10 +1350,12 @@ class Nmcli(object):
                        'ipv6.ignore-auto-routes',
                        '802-11-wireless.hidden'):
             return bool
-        elif setting in ('ipv4.dns',
+        elif setting in ('ipv4.addresses',
+                         'ipv4.dns',
                          'ipv4.dns-search',
                          'ipv4.routes',
                          'ipv4.route-metric'
+                         'ipv6.addresses',
                          'ipv6.dns',
                          'ipv6.dns-search',
                          '802-11-wireless-security.group',
@@ -1631,7 +1633,7 @@ def main():
                           'vxlan',
                           'wifi',
                       ]),
-            ip4=dict(type='str'),
+            ip4=dict(type='list', elements='str'),
             gw4=dict(type='str'),
             gw4_ignore_auto=dict(type='bool', default=False),
             routes4=dict(type='list', elements='str'),
@@ -1644,7 +1646,7 @@ def main():
             method4=dict(type='str', choices=['auto', 'link-local', 'manual', 'shared', 'disabled']),
             may_fail4=dict(type='bool', default=True),
             dhcp_client_id=dict(type='str'),
-            ip6=dict(type='str'),
+            ip6=dict(type='list', elements='str'),
             gw6=dict(type='str'),
             gw6_ignore_auto=dict(type='bool', default=False),
             dns6=dict(type='list', elements='str'),
